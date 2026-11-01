@@ -5,6 +5,8 @@ turns that section into the new version's entry and uses it as the GitHub releas
 
 ## Unreleased
 
+## 1.1.0 - 2026-10-31
+
 - New: update checks. The add-on looks for new releases on GitHub when Local starts and every 12 hours, and shows
   an **Update** button in its panel when one is out. **Check for updates** at the bottom of the panel checks right away.
 - If you installed 0.1.0 from the website, install this version once by hand (**Add-ons → Install from disk**).
