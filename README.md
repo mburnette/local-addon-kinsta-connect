@@ -86,10 +86,11 @@ Go to **Tools → Kinsta → Compare & sync files** and click **Compare with Kin
 ### What a database push does
 
 1. Exports the Local database and rewrites MySQL 8 `utf8mb4_0900_*` collations to ones MariaDB accepts.
-2. On Kinsta, saves the current database to `local-backup-before-push.sql` in a private `.kinsta-connect` folder outside the webroot (inside the site's `private/` folder when it has one). It also reads the current `home` URL and `table_prefix`. This is in addition to the Kinsta backup.
+2. On Kinsta, saves the current database to `local-backup-before-push.sql` in a private folder for this site, `.kinsta-connect/<site folder>`, outside the webroot (inside the environment's `private/` folder when it has one; one per site, so a second WordPress in a subfolder of `public/` never shares it). It also reads the current `home` URL and `table_prefix`. This is in addition to the Kinsta backup.
 3. Uploads the dump to that folder, then runs `wp db reset` and `wp db import`. If the import fails, it restores the backup automatically. The uploaded dump is always deleted afterwards.
+   - When the database also holds another site's tables (a different table prefix, such as a second WordPress in a subfolder), it drops only this site's tables instead of resetting the whole database, and the backup holds only those tables. If the Local site's table prefix would overwrite the other site's tables, the push stops before changing anything.
 4. Sets `table_prefix` to match Local if the two differ.
-5. Runs `wp search-replace` across all tables (`--precise`, `guid` skipped) from `//site.local` to the Kinsta URL, including the JSON-escaped form, plus `http://` → `https://` when the Kinsta site uses HTTPS.
+5. Runs `wp search-replace` across all tables (only this site's prefix in a shared database; `--precise`, `guid` skipped) from `//site.local` to the Kinsta URL, including the JSON-escaped form, plus `http://` → `https://` when the Kinsta site uses HTTPS.
 
 ### What a database pull does
 
@@ -127,7 +128,7 @@ A theme or plugin that you develop in another folder and symlink into the Local 
 - **What the add-on changes on Kinsta:**
   - it turns SFTP/SSH on for an environment you link, if it was off;
   - it creates manual backups before a push (if ticked);
-  - it creates a private `.kinsta-connect` folder for dumps and backups;
+  - it creates a private `.kinsta-connect/<site folder>` folder for dumps and backups;
   - only when the server has no WP-CLI, it downloads `wp-cli.phar` into that folder.
 - **Shared SSH connection:** on macOS and Linux, each push, pull or comparison logs in once and runs every command over that connection. Its control socket is `/tmp/knc-<hash>`, usable only by your user.
 

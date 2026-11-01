@@ -5,6 +5,14 @@ turns that section into the new version's entry and uses it as the GitHub releas
 
 ## Unreleased
 
+- Pushing to a folder whose path has a space no longer splits the path on the server, which could make a push
+  with **Delete files on Kinsta that are not in Local** land in the wrong folder.
+- Each site now keeps its pre-push database backup in a folder of its own (`private/.kinsta-connect/<site folder>`),
+  so a second WordPress in a subfolder of `public/` no longer shares (or overwrites) it.
+- A database push into a database that also holds another site's tables (a different table prefix) replaces only this
+  site's tables instead of resetting the whole database, and stops before changing anything if the Local site's table
+  prefix would overwrite the other site's tables. A pull downloads only this site's tables.
+
 ## 1.1.0 - 2026-10-31
 
 - New: update checks. The add-on looks for new releases on GitHub when Local starts and every 12 hours, and shows
