@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ConnectLocal for Kinsta">
+  <!-- Kinsta icon (brand assets, beige variant): two blocks whose left edges fade out. The fade is a mask gradient
+       rather than the original blur filter, so it renders the same in every SVG renderer. -->
+  <defs>
+    <linearGradient id="leftFade" x1="21" y1="0" x2="38" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="rightFade" x1="51" y1="0" x2="67" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <mask id="left" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <path d="M38.36 26.02c5.7 0 10.32 4.62 10.32 10.32v47.31c0 5.7-4.62 10.32-10.32 10.32H4.92V26.03z" fill="url(#leftFade)"/>
+    </mask>
+    <mask id="right" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <path d="M85.31 26.03c5.7 0 10.32 4.62 10.32 10.32v47.31c0 5.7-4.62 10.32-10.32 10.32l-36.48.01V26.02z" fill="url(#rightFade)"/>
+    </mask>
+    <linearGradient id="leftFill" x1="26.85" y1="69.05" x2="106.31" y2="43.77" gradientUnits="userSpaceOnUse">
+      <stop offset=".18" stop-color="#fe5a00"/>
+      <stop offset=".6" stop-color="#f00"/>
+    </linearGradient>
+    <linearGradient id="rightFill" x1="56.38" y1="69.05" x2="135.84" y2="43.77" gradientUnits="userSpaceOnUse">
+      <stop offset=".21" stop-color="#fe5a00"/>
+      <stop offset=".63" stop-color="#f00"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="24" fill="#f8f5f3"/>
+  <rect x="4" y="26" width="45" height="68" fill="url(#leftFill)" mask="url(#left)"/>
+  <rect x="48" y="26" width="48" height="68" fill="url(#rightFill)" mask="url(#right)"/>
+</svg>

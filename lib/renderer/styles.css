@@ -1,0 +1,394 @@
+/* ConnectLocal for Kinsta. Colours lean on currentColor/transparency so the panel follows Local's light and dark themes; the accent is Kinsta orange. */
+
+.KNConnect {
+	padding: 20px 30px 30px;
+	max-width: 720px;
+	font-size: 14px;
+	line-height: 1.45;
+}
+
+.KNConnect_Title {
+	margin-bottom: 14px;
+}
+
+.KNConnect_SectionTitle {
+	margin: 22px 0 10px;
+}
+
+.KNConnect_Intro {
+	margin: 0 0 16px;
+	opacity: 0.8;
+}
+
+.KNConnect_Tabs {
+	display: flex;
+	gap: 4px;
+	margin-bottom: 18px;
+	border-bottom: 1px solid rgba(127, 127, 127, 0.3);
+}
+
+.KNConnect_Tab {
+	appearance: none;
+	background: none;
+	border: 0;
+	border-bottom: 2px solid transparent;
+	color: inherit;
+	cursor: pointer;
+	font: inherit;
+	font-weight: 600;
+	margin-bottom: -1px;
+	opacity: 0.65;
+	padding: 8px 12px;
+}
+
+.KNConnect_Tab.is-active {
+	border-bottom-color: #ff492c;
+	opacity: 1;
+}
+
+.KNConnect_Tab:focus-visible {
+	outline: 2px solid #ff492c;
+	outline-offset: 2px;
+}
+
+.KNConnect_Form {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.KNConnect_Row {
+	display: grid;
+	grid-template-columns: 1fr 90px;
+	gap: 12px;
+}
+
+.KNConnect_Field {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.KNConnect_FieldLabel {
+	font-weight: 600;
+	font-size: 13px;
+}
+
+.KNConnect_Help {
+	font-size: 12px;
+	opacity: 0.7;
+}
+
+.KNConnect_Help a {
+	color: #ff492c;
+}
+
+/*
+ * Fully styled instead of the native macOS control, which has a fixed height and clips padded text. The
+ * chevron is a mid-grey that reads on both themes; color-scheme keeps the popup menu in Local's theme.
+ */
+.KNConnect_Select {
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: transparent;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23999' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-position: right 14px center;
+	background-repeat: no-repeat;
+	border: 1px solid rgba(127, 127, 127, 0.45);
+	border-radius: 4px;
+	box-sizing: border-box;
+	color: inherit;
+	color-scheme: light dark;
+	cursor: pointer;
+	font: inherit;
+	height: auto;
+	line-height: 1.4;
+	min-height: 44px;
+	overflow: hidden;
+	padding: 10px 40px 10px 14px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.KNConnect_Select:hover {
+	border-color: rgba(127, 127, 127, 0.7);
+}
+
+.KNConnect_Select:focus-visible {
+	border-color: #ff492c;
+	outline: none;
+	box-shadow: 0 0 0 1px #ff492c;
+}
+
+.KNConnect_AuthChoice {
+	display: flex;
+	gap: 20px;
+}
+
+.KNConnect_AuthChoice label {
+	cursor: pointer;
+}
+
+.KNConnect_KeyBox {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+}
+
+.KNConnect_KeyText {
+	background: rgba(127, 127, 127, 0.08);
+	border: 1px solid rgba(127, 127, 127, 0.35);
+	border-radius: 4px;
+	box-sizing: border-box;
+	color: inherit;
+	font-family: Menlo, Consolas, monospace;
+	font-size: 11px;
+	padding: 8px;
+	resize: none;
+	width: 100%;
+	word-break: break-all;
+}
+
+.KNConnect_Account {
+	align-items: center;
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+}
+
+.KNConnect_Table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.KNConnect_Table th,
+.KNConnect_Table td {
+	border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+	padding: 8px 0;
+	text-align: left;
+	vertical-align: top;
+}
+
+.KNConnect_Table th {
+	font-weight: 600;
+	padding-right: 20px;
+	white-space: nowrap;
+	width: 130px;
+}
+
+.KNConnect_Table td {
+	word-break: break-all;
+}
+
+.KNConnect_Options {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.KNConnect_Consequences {
+	margin: 16px 0 0;
+	opacity: 0.8;
+	padding-left: 18px;
+}
+
+.KNConnect_Actions {
+	align-items: center;
+	display: flex;
+	gap: 16px;
+	margin-top: 16px;
+}
+
+.KNConnect_Secondary {
+	align-items: center;
+	border-top: 1px solid rgba(127, 127, 127, 0.2);
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	margin-top: 24px;
+	padding-top: 16px;
+}
+
+.KNConnect_Busy {
+	align-items: center;
+	display: flex;
+	gap: 10px;
+	opacity: 0.8;
+}
+
+.KNConnect_Error,
+.KNConnect_Warning,
+.KNConnect_Success {
+	border-radius: 4px;
+	font-size: 13px;
+	margin-top: 12px;
+	padding: 10px 12px;
+	white-space: pre-wrap;
+}
+
+.KNConnect_Error {
+	background: rgba(226, 67, 67, 0.12);
+	border: 1px solid rgba(226, 67, 67, 0.45);
+}
+
+.KNConnect_Warning {
+	background: rgba(241, 177, 66, 0.14);
+	border: 1px solid rgba(241, 177, 66, 0.45);
+}
+
+.KNConnect_Success {
+	background: rgba(81, 187, 123, 0.12);
+	border: 1px solid rgba(81, 187, 123, 0.45);
+}
+
+.KNConnect_Modal {
+	padding: 10px 10px 0;
+	text-align: left;
+	width: 520px;
+	max-width: 100%;
+}
+
+.KNConnect_Tabs--Transfer {
+	margin-top: 24px;
+}
+
+.KNConnect_HeaderButtons {
+	align-items: center;
+	display: inline-flex;
+	gap: 8px;
+	margin-left: 10px;
+}
+
+.KNConnect_HeaderLabel {
+	font-size: 12px;
+	font-weight: 600;
+	opacity: 0.7;
+}
+
+.KNConnect_HeaderButton {
+	white-space: nowrap;
+}
+
+/* Compare & sync */
+
+.KNConnect_Actions--Top {
+	margin-top: 0;
+}
+
+.KNConnect_Summary {
+	font-weight: 600;
+	margin: 16px 0 10px;
+}
+
+.KNConnect_Filter {
+	margin-bottom: 12px;
+}
+
+.KNConnect_Group {
+	border: 1px solid rgba(127, 127, 127, 0.25);
+	border-radius: 4px;
+	margin-bottom: 12px;
+	max-height: 360px;
+	overflow-y: auto;
+}
+
+.KNConnect_GroupHeader {
+	align-items: center;
+	background: rgba(127, 127, 127, 0.08);
+	cursor: pointer;
+	display: flex;
+	font-weight: 600;
+	gap: 8px;
+	padding: 8px 10px;
+	position: sticky;
+	top: 0;
+}
+
+.KNConnect_FileRow {
+	align-items: baseline;
+	border-top: 1px solid rgba(127, 127, 127, 0.15);
+	cursor: pointer;
+	display: grid;
+	gap: 4px 8px;
+	grid-template-columns: auto 1fr;
+	padding: 6px 10px;
+}
+
+.KNConnect_FileRow:hover {
+	background: rgba(127, 127, 127, 0.06);
+}
+
+.KNConnect_FilePath {
+	font-family: Menlo, Consolas, monospace;
+	font-size: 12px;
+	overflow-wrap: anywhere;
+}
+
+.KNConnect_FileMeta {
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 12px;
+	gap: 4px 12px;
+	grid-column: 2;
+	opacity: 0.75;
+}
+
+.KNConnect_Badge {
+	border: 1px solid currentColor;
+	border-radius: 10px;
+	font-size: 11px;
+	font-weight: 600;
+	padding: 0 7px;
+}
+
+.KNConnect_Badge--local {
+	color: #3b82c4;
+}
+
+.KNConnect_Badge--remote {
+	color: #d9822b;
+}
+
+.KNConnect_SyncBar {
+	background: inherit;
+	bottom: 0;
+	justify-content: flex-end;
+	padding: 10px 0;
+	position: sticky;
+}
+
+.KNConnect_SyncBar > span {
+	margin-right: auto;
+	opacity: 0.8;
+}
+
+/* Pull to a new site */
+
+.KNConnect_NewSite {
+	margin: 0 auto;
+	max-width: 640px;
+	padding-top: 30px;
+}
+
+.KNConnect_NewSiteHeader {
+	align-items: center;
+	display: flex;
+	gap: 16px;
+	margin-bottom: 8px;
+}
+
+.KNConnect_NewSiteHeader .KNConnect_Title {
+	margin-bottom: 0;
+}
+
+.KNConnect_SecretInput {
+	align-items: center;
+	display: flex;
+	gap: 10px;
+}
+
+.KNConnect_SecretInput > :first-child {
+	flex: 1;
+}
