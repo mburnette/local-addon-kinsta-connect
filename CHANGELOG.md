@@ -1,9 +1,14 @@
 # Changelog
 
-What changed in each release of ConnectLocal for Kinsta. Add new notes under **Unreleased** and move them under a
-version heading when you release.
+What changed in each release of ConnectLocal for Kinsta. Add new notes under **Unreleased**; `npm run release`
+turns that section into the new version's entry and uses it as the GitHub release notes.
 
 ## Unreleased
+
+- New: update checks. The add-on looks for new releases on GitHub when Local starts and every 12 hours, and shows
+  an **Update** button in its panel when one is out. **Check for updates** at the bottom of the panel checks right away.
+- If you installed 0.1.0 from the website, install this version once by hand (**Add-ons → Install from disk**).
+  Later updates arrive in the add-on.
 
 ## 0.1.0 - 2026-10-31
 

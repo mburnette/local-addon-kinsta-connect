@@ -45,13 +45,15 @@ This symlinks the folder into Local's add-ons directory (`~/Library/Application 
 
 This add-on is separate from ConnectLocal for Cloudways and ConnectLocal for Bluehost, and can be installed next to them: package names, IPC channels, CSS classes, storage folders and ignore files are all distinct.
 
-### As a package
+### From a release
 
-```bash
-npm run package
-```
+Download the `.tgz` from the [latest release](../../releases/latest). In Local, go to **Add-ons → Install from disk**, choose the file, enable the add-on and restart Local.
 
-In Local, go to **Add-ons → Install from disk** and choose the generated `local-addon-kinsta-connect-<version>.tgz`. Then enable the add-on and restart Local.
+### Updates
+
+The add-on checks this repository's releases when Local starts and every 12 hours after that. You can also check right away from **Check for updates** at the bottom of the add-on's panel. When a new version is out, the panel shows an **Update** button. It installs the update through Local's own add-on installer, then offers to restart Local. Your linked sites and saved credentials are kept.
+
+To build a package yourself, run `npm run package`, or use `npm run release -- patch --dry-run` (see [RELEASING.md](RELEASING.md)).
 
 ## Use
 
@@ -187,6 +189,7 @@ lib/
   main/transport.js       rsync/ssh runner using Local's bundled binaries, key or password auth
   main/sshKey.js          RSA key pair in OpenSSH format
   main/store.js           settings + encrypted secrets
+  main/updater.js         checks GitHub releases and installs updates through Local's add-on installer
   renderer.js             hooks: Tools → Kinsta tab, header pull/push buttons, create-site option, stylesheet
   renderer/components.js  React UI (plain React.createElement, no build step)
 ```
@@ -205,3 +208,7 @@ lib/
 | Operations | `GET /operations/{operation_id}` (202 running, 200 done) |
 
 The base URL is `https://api.kinsta.com/v2`. Kinsta allows 120 requests per minute per company; the add-on makes a handful per link or transfer.
+
+## Releasing
+
+See [RELEASING.md](RELEASING.md). In short: commit to `main`, then run `npm run release -- patch` (or `minor`/`major`).

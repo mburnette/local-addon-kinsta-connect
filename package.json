@@ -5,6 +5,7 @@
   "description": "Push Local sites (files, database, or both) to Kinsta and pull them back, the same way Local Connect works with WP Engine and Flywheel.",
   "author": "Marcus Burnette",
   "license": "MIT",
+  "repository": "github:mburnette/local-addon-kinsta-connect",
   "keywords": [
     "local-addon"
   ],
@@ -18,14 +19,17 @@
   "files": [
     "lib",
     "icon.svg",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
   ],
   "scripts": {
     "test": "node --test --test-force-exit test/*.test.js",
     "test:e2e": "node --test test/e2e/*.e2e.js",
     "lint": "node scripts/check-syntax.js",
     "install-addon": "node scripts/install-addon.js",
-    "package": "npm pack"
+    "package": "npm pack",
+    "release": "node scripts/release.js"
   },
   "dependencies": {
     "@getflywheel/local-components": "^17.8.2",

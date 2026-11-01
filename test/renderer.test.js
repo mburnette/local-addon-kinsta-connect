@@ -339,3 +339,37 @@ test('create-site page pulls a Kinsta site into a new Local site', async () => {
 	await click(button(root, '← Back'));
 	assert.deepEqual(history.pushed, ['/main/create-site']);
 });
+
+test('shows an available update and installs it through the main process', async () => {
+	const update = { name: 'ConnectLocal for Kinsta', current: '0.1.0', latest: '0.2.0', releaseUrl: 'https://github.com/x/y/releases/tag/v0.2.0', devInstall: false, checking: false, installing: false, installed: false, error: null };
+	mainState = { account: null, link: null, activity: null, publicKey: null, passwordAuthSupported: true, update };
+	ipcCalls.length = 0;
+	const root = await mount(toolsPanel());
+	assert.match(root.textContent, /ConnectLocal for Kinsta 0\.2\.0 is available\. You have 0\.1\.0\./);
+	await click(button(root, 'Update'));
+	assert.ok(ipcCalls.some(([channel]) => channel === IPC.INSTALL_UPDATE));
+
+	mainState = { ...mainState, update: { ...update, installed: true } };
+	await act(async () => { (listeners[IPC.STATE_CHANGED] || []).forEach((fn) => fn({}, null)); });
+	await act(async () => { await new Promise((r) => setTimeout(r, 20)); });
+	assert.match(root.textContent, /0\.2\.0 is installed\. Restart Local/);
+	await click(button(root, 'Restart Local'));
+	assert.ok(ipcCalls.some(([channel]) => channel === IPC.RESTART_LOCAL));
+});
+
+test('a development copy shows the update but no Update button, and the footer can check manually', async () => {
+	const update = { name: 'ConnectLocal for Kinsta', current: '0.1.0', latest: null, releaseUrl: null, devInstall: true, checking: false, installing: false, installed: false, error: null };
+	mainState = { account: null, link: null, activity: null, publicKey: null, passwordAuthSupported: true, update: { ...update, latest: '0.2.0' } };
+	let root = await mount(toolsPanel());
+	assert.match(root.textContent, /linked from a development folder/);
+	assert.equal(button(root, 'Update'), undefined);
+	await act(async () => { ReactDOM.unmountComponentAtNode(root); });
+
+	mainState = { ...mainState, update };
+	ipcCalls.length = 0;
+	root = await mount(toolsPanel());
+	assert.match(root.textContent, /ConnectLocal for Kinsta 0\.1\.0/);
+	await click(button(root, 'Check for updates'));
+	assert.ok(ipcCalls.some(([channel]) => channel === IPC.CHECK_UPDATE));
+	assert.match(root.textContent, /You have the latest version\./);
+});
